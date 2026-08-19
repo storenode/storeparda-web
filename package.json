@@ -11,7 +11,8 @@
     "typecheck": "tsc -b --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:cov": "vitest run --coverage"
+    "test:cov": "vitest run --coverage",
+    "supabase:check": "node scripts/check-supabase-connection.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
