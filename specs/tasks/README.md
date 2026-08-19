@@ -11,6 +11,10 @@ back here rather than duplicating the content.
    task is added to it) in the spec's `Tracking` line, and put the spec's file path in
    the issue body. Neither system syncs automatically; both links are added by hand.
 2. Work the checklist. Commit the spec update alongside the code that satisfies it.
+   Prefix every commit message for this task with its id, e.g. `M0.5: <summary>` —
+   so anyone can trace a change back to the task/spec/issue that produced it via
+   `git log` alone, without cross-referencing GitHub. Ad-hoc (non-module) tasks use
+   their slug the same way, e.g. `hotfix-gst-rounding: <summary>`.
 3. When done, set `Status: Completed` in the frontmatter, check every box (or note why
    an item was intentionally skipped/deferred), and set `Version` to `1.0.0`.
 4. If a module is revisited later (a follow-up change, a bug fix, a scope addition),
