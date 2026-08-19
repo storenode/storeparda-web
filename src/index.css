@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* dark: variant is driven by data-theme, not OS media, so the in-app toggle can override it */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme {
   --color-parda-green-50: #eafaf1;
   --color-parda-green-500: #2fbf71; /* brand green, Constitution §0 */
@@ -8,8 +11,37 @@
   --color-parda-lavender-50: #eeeffc;
   --color-parda-lavender-500: #7b7fe0; /* brand lavender */
   --color-parda-lavender-600: #6165c9;
+  --color-parda-lavender-700: #4d51a8;
 
   --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  --font-script: "Dancing Script", cursive;
+
+  /* semantic tokens — components read these, never the raw brand/gray scale directly */
+  --color-bg: var(--sp-bg);
+  --color-surface: var(--sp-surface);
+  --color-surface-2: var(--sp-surface-2);
+  --color-fg: var(--sp-fg);
+  --color-fg-muted: var(--sp-fg-muted);
+  --color-border: var(--sp-border);
+}
+
+:root {
+  --sp-bg: #ffffff;
+  --sp-surface: #f7f8fc;
+  --sp-surface-2: #eeeffc;
+  --sp-fg: #16172b;
+  --sp-fg-muted: #5c5e78;
+  --sp-border: #e4e5f3;
+}
+
+[data-theme="dark"] {
+  --sp-bg: #0e0f16;
+  --sp-surface: #161826;
+  --sp-surface-2: #1e2033;
+  --sp-fg: #f3f3f9;
+  --sp-fg-muted: #a3a5c0;
+  --sp-border: #2a2c42;
 }
 
 html,
@@ -21,4 +53,6 @@ body,
 body {
   overscroll-behavior-y: none; /* no pull-to-refresh mid-invoice */
   -webkit-tap-highlight-color: transparent;
+  background: var(--color-bg);
+  color: var(--color-fg);
 }

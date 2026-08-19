@@ -158,7 +158,8 @@ it does not belong in v1.
 | Module    | Scope                                                | Est. hours                                                 |
 | --------- | ---------------------------------------------------- | ---------------------------------------------------------- |
 | M0        | Project foundation, PWA config, CI                   | 8                                                          |
-| M1        | Supabase schema, RLS, Auth (phone OTP)               | 18                                                         |
+| M0.5      | Public home portal (landing page + Google Sign-In entry point) | 6                                                |
+| M1        | Supabase schema, RLS, Auth (phone OTP + Google Sign-In) | 18                                                       |
 | M2        | **Offline sync engine** (Dexie ⇄ Supabase push/pull) | 62                                                         |
 | M3        | Inventory, variant matrix, barcode                   | 36                                                         |
 | M4        | **Purchase-Trip module** (landed cost engine)        | 52                                                         |
@@ -167,7 +168,7 @@ it does not belong in v1.
 | M7        | Settings, onboarding                                 | 16                                                         |
 | M8        | PWA polish, offline UX, shadow-mode pilot test       | 30                                                         |
 | M9        | Launch prep                                          | 16                                                         |
-| **Total** |                                                      | **320 hrs (~32 weeks @ 10 hr/wk, ~9–10 months w/ buffer)** |
+| **Total** |                                                      | **326 hrs (~33 weeks @ 10 hr/wk, ~9–10 months w/ buffer)** |
 
 **Sequencing rule:** M2 must be stable and tested before M3, M4, or M5 begin in earnest.
 Building inventory/billing/trip features on top of an unstable sync layer means rework
@@ -210,6 +211,14 @@ This constitution may be amended, but not casually. An amendment requires:
 2. An entry in this changelog explaining what changed and why.
 
 ### Changelog
+
+- **2026-08-19 — v1.1.0.** Added module M0.5 (public home portal — a landing page shown
+  to anonymous visitors before auth, with a Google Sign-In entry point) and amended M1's
+  auth scope from phone-OTP-only to phone OTP + Google Sign-In. Reason: founder wants a
+  public marketing/portal page as the default first screen instead of dropping straight
+  into the phone-OTP flow, and wants Google as an additional sign-in option. The Google
+  Sign-In *handler* (OAuth wiring, session creation) is deferred to M1 — M0.5 only ships
+  the UI entry point.
 
 - **2026-08-18 — v1.0.0 ratified.** Consolidated decisions from planning discussion:
   name (StoreParda, correcting the Parada/Prada collision risk), tech stack, offline-first

@@ -10,9 +10,28 @@
     />
     <meta name="theme-color" content="#2FBF71" />
     <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Dancing+Script:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
     <title>StoreParda</title>
   </head>
   <body>
+    <script>
+      (function () {
+        var stored = localStorage.getItem("sp-theme");
+        var theme =
+          stored === "light" || stored === "dark"
+            ? stored
+            : window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

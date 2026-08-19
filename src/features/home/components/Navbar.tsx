@@ -1,0 +1,51 @@
+import { Link } from "react-router-dom";
+import { Container } from "@/components/ui/Container";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { GoogleSignInButton } from "@/features/home/components/GoogleSignInButton";
+import { useScrollY } from "@/hooks/useScrollY";
+
+const navLinks = [
+  { href: "#features", label: "Features" },
+  { href: "#why-us", label: "Why us" },
+];
+
+export function Navbar() {
+  const scrollY = useScrollY();
+  const isScrolled = scrollY > (typeof window !== "undefined" ? window.innerHeight * 0.7 : 500);
+
+  return (
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        isScrolled
+          ? "border-b border-border bg-bg/90 backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
+      }`}
+    >
+      <Container className="flex h-16 items-center justify-between">
+        <Link to="/" className="font-script text-2xl">
+          <span className="text-parda-green-500">Store</span>
+          <span className="text-parda-lavender-500">Parda</span>
+        </Link>
+
+        <nav className="hidden items-center gap-8 sm:flex">
+          {navLinks.map(({ href, label }) => (
+            <a
+              key={href}
+              href={href}
+              className="text-sm font-medium text-fg-muted transition-colors hover:text-fg"
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <div className="hidden sm:block">
+            <GoogleSignInButton />
+          </div>
+        </div>
+      </Container>
+    </header>
+  );
+}

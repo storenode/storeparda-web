@@ -1,0 +1,43 @@
+import { Container } from "@/components/ui/Container";
+import { Button } from "@/components/ui/Button";
+import { GoogleSignInButton } from "@/features/home/components/GoogleSignInButton";
+import { HeroBackground } from "@/features/home/components/HeroBackground";
+
+export function Hero() {
+  return (
+    <section className="relative flex min-h-[90vh] items-center pt-24">
+      <HeroBackground />
+      <Container>
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="mb-4 inline-flex items-center rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-semibold tracking-wide text-fg-muted uppercase">
+            Cloth store operating system
+          </p>
+          <h1 className="font-display text-4xl font-bold tracking-tight text-fg sm:text-5xl md:text-6xl">
+            Run your cloth store from{" "}
+            <span className="text-parda-green-500">billing</span> to{" "}
+            <span className="text-parda-lavender-500">sourcing trips</span>
+          </h1>
+          <p className="mx-auto mt-6 max-w-xl text-lg text-fg-muted">
+            StoreParda tracks landed cost from the moment you buy stock in Surat or
+            Kerala to the moment it's billed at the counter — offline-first, built for
+            independent Indian cloth stores.
+          </p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <GoogleSignInButton />
+            <Button
+              variant="ghost"
+              size="md"
+              onClick={() =>
+                document
+                  .getElementById("features")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              See features
+            </Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
