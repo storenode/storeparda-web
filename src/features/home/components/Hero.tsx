@@ -9,6 +9,11 @@ export function Hero() {
       <HeroBackground />
       <Container>
         <div className="mx-auto max-w-3xl text-center">
+          <img
+            src="/pwa-512x512.png"
+            alt="StoreParda"
+            className="mx-auto mb-6 size-20 rounded-2xl shadow-lg shadow-parda-green-500/20 ring-1 ring-border sm:size-24"
+          />
           <p className="mb-4 inline-flex items-center rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-semibold tracking-wide text-fg-muted uppercase">
             Cloth store operating system
           </p>

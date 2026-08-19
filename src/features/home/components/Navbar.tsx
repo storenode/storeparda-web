@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Container } from "@/components/ui/Container";
+import { Logo } from "@/components/ui/Logo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { GoogleSignInButton } from "@/features/home/components/GoogleSignInButton";
 import { useScrollY } from "@/hooks/useScrollY";
@@ -22,9 +23,8 @@ export function Navbar() {
       }`}
     >
       <Container className="flex h-16 items-center justify-between">
-        <Link to="/" className="font-script text-2xl">
-          <span className="text-parda-green-500">Store</span>
-          <span className="text-parda-lavender-500">Parda</span>
+        <Link to="/" aria-label="StoreParda home">
+          <Logo size="sm" />
         </Link>
 
         <nav className="hidden items-center gap-8 sm:flex">
