@@ -6,7 +6,10 @@ back here rather than duplicating the content.
 
 ## Workflow
 
-1. Before starting a task: create `specs/tasks/<id>-<slug>.md` using the template below.
+1. Before starting a task: create `specs/tasks/<id>-<slug>.md` using the template below,
+   and open a linked GitHub issue for it — put the issue (and the project board, if the
+   task is added to it) in the spec's `Tracking` line, and put the spec's file path in
+   the issue body. Neither system syncs automatically; both links are added by hand.
 2. Work the checklist. Commit the spec update alongside the code that satisfies it.
 3. When done, set `Status: Completed` in the frontmatter, check every box (or note why
    an item was intentionally skipped/deferred), and set `Version` to `1.0.0`.
@@ -32,6 +35,7 @@ Non-module ad-hoc tasks can use a short slug instead, e.g. `hotfix-gst-rounding.
 **Status:** Planned | In Progress | Completed
 **Version:** 1.0.0
 **Est:** <hours> hrs (Constitution §5)
+**Tracking:** [Issue #<n>](<url>) · [Project board](<url>)
 
 ## What this is
 Plain-language summary for a reader with no prior context: what the feature does,
