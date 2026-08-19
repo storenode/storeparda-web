@@ -10,9 +10,9 @@ export function Hero() {
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <img
-            src="/pwa-512x512.png"
+            src="/logo-mark.svg"
             alt="StoreParda"
-            className="mx-auto mb-6 size-20 rounded-2xl shadow-lg shadow-parda-green-500/20 ring-1 ring-border sm:size-24"
+            className="mx-auto mb-6 size-20 drop-shadow-[0_8px_24px_rgba(47,191,113,0.25)] sm:size-24"
           />
           <p className="mb-4 inline-flex items-center rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-semibold tracking-wide text-fg-muted uppercase">
             Cloth store operating system

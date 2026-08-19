@@ -16,9 +16,9 @@ export function Logo({
   return (
     <span className={`inline-flex items-center gap-2 ${className}`}>
       <img
-        src="/pwa-512x512.png"
+        src="/logo-mark.svg"
         alt=""
-        className={`${mark} shrink-0 rounded-xl transition-transform duration-300 hover:scale-105`}
+        className={`${mark} shrink-0 transition-transform duration-300 hover:scale-105`}
       />
       <span className={`font-script leading-none ${text}`}>
         <span className="text-parda-green-500">Store</span>
