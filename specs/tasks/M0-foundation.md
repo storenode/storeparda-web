@@ -1,6 +1,7 @@
 # M0 — Project foundation, PWA config, CI
 
 **Status:** Completed
+**Version:** 1.0.0
 **Est:** 8 hrs (Constitution §5)
 
 Build passes, typecheck passes, tests pass, service worker registers, shell renders at
