@@ -31,14 +31,36 @@ export interface OutboxItem {
   attempts: number;
 }
 
+/**
+ * Cache slot for the signed-in member's own profile — not a general members table
+ * sync (that's M2's job). Written directly from mint-member-session's response, not
+ * through the outbox/_dirty push pipeline. See specs/tasks/M1-auth-google.md.
+ */
+export interface Member extends SyncMeta {
+  id?: string;
+  google_id: string;
+  google_email: string;
+  email_verified: boolean;
+  first_name: string | null;
+  last_name: string | null;
+  avatar_url: string | null;
+  locale: string | null;
+  pin: string | null;
+}
+
 export const db = new Dexie("storeparda") as Dexie & {
   products: EntityTable<Product, "_localId">;
   invoices: EntityTable<Invoice, "_localId">;
   outbox: EntityTable<OutboxItem, "id">;
+  members: EntityTable<Member, "_localId">;
 };
 
 db.version(1).stores({
   products: "_localId, id, store_id, name, _dirty, last_modified_at",
   invoices: "_localId, id, store_id, invoice_no, _dirty, last_modified_at",
   outbox: "++id, table, localId, queued_at",
+});
+
+db.version(2).stores({
+  members: "_localId, id, google_id, _dirty, last_modified_at",
 });

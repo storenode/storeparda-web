@@ -1,50 +1,31 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { AppShell } from "@/components/AppShell";
+import { AuthGuard } from "@/features/auth/AuthGuard";
+import { authRoutes } from "@/features/auth/router";
+import { homeRoutes } from "@/features/home/router";
+import { billingRoutes } from "@/features/billing/router";
+import { inventoryRoutes } from "@/features/inventory/router";
+import { tripsRoutes } from "@/features/trips/router";
+import { reportsRoutes } from "@/features/reports/router";
+import { settingsRoutes } from "@/features/settings/router";
 
 export const router = createBrowserRouter([
-  {
-    path: "/",
-    // Public portal — signed-out landing page. Real auth-state guard lands in M1;
-    // for now this and /app are just separate route trees.
-    lazy: async () => ({
-      Component: (await import("@/features/home/HomePage")).default,
-    }),
-  },
+  ...homeRoutes,
+  ...authRoutes,
   {
     path: "/app",
-    element: <AppShell />,
+    element: <AuthGuard />,
     children: [
-      { index: true, element: <Navigate to="bill" replace /> },
       {
-        path: "bill",
-        lazy: async () => ({
-          Component: (await import("@/features/billing/BillingPage")).default,
-        }),
-      },
-      {
-        path: "inventory",
-        lazy: async () => ({
-          Component: (await import("@/features/inventory/InventoryPage"))
-            .default,
-        }),
-      },
-      {
-        path: "trips",
-        lazy: async () => ({
-          Component: (await import("@/features/trips/TripsPage")).default,
-        }),
-      },
-      {
-        path: "reports",
-        lazy: async () => ({
-          Component: (await import("@/features/reports/ReportsPage")).default,
-        }),
-      },
-      {
-        path: "settings",
-        lazy: async () => ({
-          Component: (await import("@/features/settings/SettingsPage")).default,
-        }),
+        element: <AppShell />,
+        children: [
+          { index: true, element: <Navigate to="bill" replace /> },
+          ...billingRoutes,
+          ...inventoryRoutes,
+          ...tripsRoutes,
+          ...reportsRoutes,
+          ...settingsRoutes,
+        ],
       },
     ],
   },

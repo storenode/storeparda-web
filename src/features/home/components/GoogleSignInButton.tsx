@@ -1,13 +1,26 @@
-/**
- * UI-only stub. Real OAuth wiring (session creation, redirect handling)
- * lands in M1 — see specs/tasks/M0.5-public-home-portal.md.
- */
+import { useState } from "react";
+import { signInWithGoogle } from "@/features/auth/signIn";
+
 export function GoogleSignInButton({ className = "" }: { className?: string }) {
+  const [isPending, setIsPending] = useState(false);
+
+  async function handleClick() {
+    setIsPending(true);
+    try {
+      await signInWithGoogle();
+      // signInWithOAuth redirects the browser away — this component unmounts.
+    } catch (err) {
+      console.error("Google sign-in failed:", err);
+      setIsPending(false);
+    }
+  }
+
   return (
     <button
       type="button"
-      onClick={() => console.info("Google Sign-In handler lands in M1")}
-      className={`inline-flex min-h-11 items-center justify-center gap-3 rounded-full border border-border bg-bg px-5 text-sm font-semibold text-fg shadow-sm transition-colors hover:bg-surface-2 ${className}`}
+      onClick={handleClick}
+      disabled={isPending}
+      className={`inline-flex min-h-11 items-center justify-center gap-3 rounded-full border border-border bg-bg px-5 text-sm font-semibold text-fg shadow-sm transition-colors hover:bg-surface-2 disabled:opacity-60 ${className}`}
     >
       <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden>
         <path
@@ -27,7 +40,7 @@ export function GoogleSignInButton({ className = "" }: { className?: string }) {
           d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .9 4.97l3.05 2.33C4.66 5.17 6.65 3.58 9 3.58z"
         />
       </svg>
-      Sign in with Google
+      {isPending ? "Redirecting…" : "Sign in with Google"}
     </button>
   );
 }
